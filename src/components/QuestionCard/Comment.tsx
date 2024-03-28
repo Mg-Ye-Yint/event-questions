@@ -12,6 +12,7 @@ interface IData {
     questionId: string;
     isHost: boolean;
     handleRefresh: () => void;
+    handleLoading: () => void;
 }
 
 export default function Comment(props: IData) {
@@ -22,6 +23,7 @@ export default function Comment(props: IData) {
         props.handleRefresh();
     };
     const handleOpenConfirm = () => {
+        props.handleLoading();
         handleDeleteComment();
         setOpenConfirm(!openConfirm);
         props.handleRefresh;

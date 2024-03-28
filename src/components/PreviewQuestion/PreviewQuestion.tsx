@@ -61,7 +61,7 @@ export default function PreviewQuestion(props: IData) {
             if (data) {
                 setQuestions(data);
                 const isUserLiked = data.likeNumber.some(
-                    (item: { userLikeId: string; }) =>
+                    (item: { userLikeId: string }) =>
                         item.userLikeId === userInfo.userId
                 );
                 const isOwner = data.ownerId == userInfo.userId;
@@ -144,6 +144,10 @@ export default function PreviewQuestion(props: IData) {
         setOpenConfirm(!openConfirm);
         handleCloseCard();
         props.handleRefresh;
+    };
+
+    const handleLoading = () => {
+        setOpenLoading(true);
     };
 
     return (
@@ -415,6 +419,9 @@ export default function PreviewQuestion(props: IData) {
                                                         }
                                                         handleRefresh={
                                                             props.handleRefresh
+                                                        }
+                                                        handleLoading={
+                                                            handleLoading
                                                         }
                                                     />
                                                 </Box>

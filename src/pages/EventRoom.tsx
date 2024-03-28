@@ -21,6 +21,7 @@ export default function EventRoom(props: IData) {
     const [eventData, setEventData] = useState<Ievent>();
     const [questions, setQuestions] = useState<IQuestion[]>([]);
     const [myQuestions, setMyQuestions] = useState<IQuestion[]>([]);
+    const [openLoading, setOpenLoading] = useState(false);
     const {
         todos,
         addTodo,
@@ -29,8 +30,11 @@ export default function EventRoom(props: IData) {
     } = useStore();
 
     const fetchQuestion = async () => {
+        setOpenLoading(true);
         const data = (await getQuesByEId(eventId ?? "")) as IQuestion[];
-        setQuestions(data);
+        if (data) {
+            setQuestions(data);
+        }
     };
 
     useEffect(() => {
@@ -55,6 +59,7 @@ export default function EventRoom(props: IData) {
     }, []);
     useEffect(() => {
         fetchQuestion();
+        setOpenLoading(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.refresh, todos]);
     useEffect(() => {
@@ -70,6 +75,10 @@ export default function EventRoom(props: IData) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.refresh, todos]);
 
+    const handleLoading = () => {
+        setOpenLoading(true);
+    };
+
     if (isStorageLoading) {
         return (
             <>
@@ -80,6 +89,7 @@ export default function EventRoom(props: IData) {
 
     return (
         <>
+            <Loading openLoading={openLoading} />
             {eventData !== undefined &&
                 (isHost !== "host" ? (
                     <EventDetails
@@ -94,6 +104,8 @@ export default function EventRoom(props: IData) {
                         handleRefresh={addTodo}
                         questions={questions}
                         setReset={setReset}
+                        openLoading={openLoading}
+                        handleLoading={handleLoading}
                     />
                 ))}
         </>

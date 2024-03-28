@@ -16,8 +16,10 @@ import { IQuestion } from "../interface/IQuestion";
 interface IData {
     refresh: number;
     questions: IQuestion[];
+    openLoading: boolean;
     handleRefresh: () => void;
     setReset: () => void;
+    handleLoading: () => void;
 }
 
 export default function HostEvent(props: IData) {
@@ -43,15 +45,6 @@ export default function HostEvent(props: IData) {
         fetch();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.refresh]);
-
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         const data = (await getQuesByEId(eventId ?? "")) as IQuestion[];
-    //         setQuestions(data);
-    //     };
-    //     fetch();
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [props.refresh]);
 
     const handleChange = (newValue: number) => {
         setValue(newValue);
@@ -325,8 +318,8 @@ export default function HostEvent(props: IData) {
                                                 a.isRead === b.isRead
                                                     ? 0
                                                     : a.isRead
-                                                        ? 1
-                                                        : -1
+                                                    ? 1
+                                                    : -1
                                             )
                                             .map((item, index) => (
                                                 <Box
@@ -339,6 +332,12 @@ export default function HostEvent(props: IData) {
                                                         }
                                                         handleSelectQuestion={
                                                             handleSelectQuestion
+                                                        }
+                                                        handleLoading={
+                                                            props.handleLoading
+                                                        }
+                                                        handleChange={
+                                                            handleChange
                                                         }
                                                     />
                                                     <Divider />
@@ -395,7 +394,7 @@ export default function HostEvent(props: IData) {
                                                         handleCopyText(
                                                             import.meta.env
                                                                 .VITE_CLIENT +
-                                                            patch
+                                                                patch
                                                         )
                                                     }>
                                                     <ContentCopyOutlinedIcon />
@@ -421,8 +420,8 @@ export default function HostEvent(props: IData) {
                                                 a.isRead === b.isRead
                                                     ? 0
                                                     : a.isRead
-                                                        ? 1
-                                                        : -1
+                                                    ? 1
+                                                    : -1
                                             )
                                             .sort((a, b) => {
                                                 return (
@@ -444,6 +443,12 @@ export default function HostEvent(props: IData) {
                                                         }
                                                         handleSelectQuestion={
                                                             handleSelectQuestion
+                                                        }
+                                                        handleLoading={
+                                                            props.handleLoading
+                                                        }
+                                                        handleChange={
+                                                            handleChange
                                                         }
                                                     />
                                                     <Divider />
@@ -502,6 +507,12 @@ export default function HostEvent(props: IData) {
                                                             }
                                                             handleSelectQuestion={
                                                                 handleSelectQuestion
+                                                            }
+                                                            handleLoading={
+                                                                props.handleLoading
+                                                            }
+                                                            handleChange={
+                                                                handleChange
                                                             }
                                                         />
                                                         <Divider />

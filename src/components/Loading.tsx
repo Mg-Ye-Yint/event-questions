@@ -11,6 +11,9 @@ const styleLoading = {
         boxShadow: "none",
     },
     textAlign: "center",
+    background: "black",
+    padding: "20px",
+    borderRadius: "10px",
 };
 
 interface ILoading {
@@ -26,9 +29,11 @@ export default function Loading(props: ILoading) {
                         disableShrink
                         size={80}
                         color="inherit"
-                        sx={{ color: "green" }}
+                        sx={{ color: "white" }}
                     />
-                    <Typography variant="h5" color={"white"}>Please wait...</Typography>
+                    <Typography variant="h5" color={"white"}>
+                        Please wait...
+                    </Typography>
                 </Box>
             </Modal>
         </>

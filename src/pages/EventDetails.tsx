@@ -20,6 +20,7 @@ interface IData {
     questions: IQuestion[];
     myQuestions: IQuestion[];
     handleRefresh: () => void;
+    handleLoading: () => void;
 }
 
 export default function EventDetails(props: IData) {
@@ -48,24 +49,6 @@ export default function EventDetails(props: IData) {
         fetch();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         const data = (await getQuesByEId(eventId ?? "")) as IQuestion[];
-    //         setQuestions(data);
-    //     };
-    //     fetch();
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [props.refresh]);
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         const data = (await getQuesByOwnerId(
-    //             userInfo.userId ?? ""
-    //         )) as IQuestion[];
-    //         setMyQuestions(data);
-    //     };
-    //     fetch();
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [props.refresh]);
 
     const handleOpenCard = () => setOpenCard(true);
     const handleCloseCard = () => setOpenCard(false);
@@ -363,6 +346,9 @@ export default function EventDetails(props: IData) {
                                                         handleSelectQuestion={
                                                             handleSelectQuestion
                                                         }
+                                                        handleLoading={
+                                                            props.handleLoading
+                                                        }
                                                     />
                                                     <Divider />
                                                 </Box>
@@ -439,6 +425,9 @@ export default function EventDetails(props: IData) {
                                                         handleSelectQuestion={
                                                             handleSelectQuestion
                                                         }
+                                                        handleLoading={
+                                                            props.handleLoading
+                                                        }
                                                     />
                                                     <Divider />
                                                 </Box>
@@ -491,6 +480,9 @@ export default function EventDetails(props: IData) {
                                                             }
                                                             handleSelectQuestion={
                                                                 handleSelectQuestion
+                                                            }
+                                                            handleLoading={
+                                                                props.handleLoading
                                                             }
                                                         />
                                                         <Divider />

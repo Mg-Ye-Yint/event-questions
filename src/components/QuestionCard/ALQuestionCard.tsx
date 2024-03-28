@@ -32,6 +32,7 @@ interface IData {
     questions: IQuestion;
     handleRefresh: () => void;
     handleSelectQuestion: (id: string) => void;
+    handleLoading: () => void;
 }
 
 export default function ALQuestionCard(props: IData) {
@@ -376,6 +377,7 @@ export default function ALQuestionCard(props: IData) {
                                     commentId={item.commentId}
                                     questionId={props.questions.questionId}
                                     handleRefresh={props.handleRefresh}
+                                    handleLoading={props.handleLoading}
                                 />
                             </Box>
                         ))}

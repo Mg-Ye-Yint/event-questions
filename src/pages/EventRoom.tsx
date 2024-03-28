@@ -97,6 +97,7 @@ export default function EventRoom(props: IData) {
                         handleRefresh={addTodo}
                         questions={questions}
                         myQuestions={myQuestions}
+                        handleLoading={handleLoading}
                     />
                 ) : (
                     <HostEvent

@@ -74,6 +74,7 @@ export default function ALQuestionCard(props: IData) {
 
     const handleCloseAlert = () => setOpenAlert(false);
     const handleDeleteQuestion = async (id: string) => {
+        props.handleLoading();
         await deleteQuestionById(id);
         props.handleRefresh();
         handleCloseDeleteCard();
@@ -377,7 +378,6 @@ export default function ALQuestionCard(props: IData) {
                                     commentId={item.commentId}
                                     questionId={props.questions.questionId}
                                     handleRefresh={props.handleRefresh}
-                                    handleLoading={props.handleLoading}
                                 />
                             </Box>
                         ))}

@@ -56,7 +56,6 @@ export default function PreviewQuestion(props: IData) {
 
     useEffect(() => {
         const fetch = async () => {
-            setOpenLoading(true);
             const data: IQuestion = await getQuesById(props.questionId ?? "");
             if (data) {
                 setQuestions(data);
@@ -67,7 +66,6 @@ export default function PreviewQuestion(props: IData) {
                 const isOwner = data.ownerId == userInfo.userId;
                 SetIsOwner(isOwner);
                 SetIsUserLiked(isUserLiked);
-                setOpenLoading(false);
             }
         };
         if (props.openPreviewCard) {
@@ -89,6 +87,7 @@ export default function PreviewQuestion(props: IData) {
     const handleDeleteQuestion = async (id: string) => {
         setOpenLoading(true);
         await deleteQuestionById(id);
+        setOpenLoading(false);
         props.handleRefresh();
         props.handleCloseCard();
     };
@@ -117,6 +116,7 @@ export default function PreviewQuestion(props: IData) {
             await addComment(data, props.questionId);
             setComment("");
             handleRefresh();
+            setOpenLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -144,10 +144,6 @@ export default function PreviewQuestion(props: IData) {
         setOpenConfirm(!openConfirm);
         handleCloseCard();
         props.handleRefresh;
-    };
-
-    const handleLoading = () => {
-        setOpenLoading(true);
     };
 
     return (
@@ -419,9 +415,6 @@ export default function PreviewQuestion(props: IData) {
                                                         }
                                                         handleRefresh={
                                                             props.handleRefresh
-                                                        }
-                                                        handleLoading={
-                                                            handleLoading
                                                         }
                                                     />
                                                 </Box>

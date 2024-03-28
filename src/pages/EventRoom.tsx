@@ -76,7 +76,7 @@ export default function EventRoom(props: IData) {
     }, [props.refresh, todos]);
 
     const handleLoading = () => {
-        setOpenLoading(true);
+        setOpenLoading(!openLoading);
     };
 
     if (isStorageLoading) {

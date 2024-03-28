@@ -382,7 +382,6 @@ export default function QuestionCard(props: IData) {
                                         commentId={item.commentId}
                                         questionId={props.questions.questionId}
                                         handleRefresh={props.handleRefresh}
-                                        handleLoading={props.handleLoading}
                                     />
                                 </Box>
                             ))}

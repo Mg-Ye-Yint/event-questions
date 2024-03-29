@@ -375,6 +375,7 @@ export default function QuestionCard(props: IData) {
                             .map((item, index) => (
                                 <Box key={index} sx={{ marginBottom: "16px" }}>
                                     <Comment
+                                        comment={item}
                                         isHost={true}
                                         ownerName={item.name}
                                         date={item.timestamp.toLocaleString()}

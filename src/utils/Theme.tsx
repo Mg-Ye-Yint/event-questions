@@ -60,6 +60,24 @@ export const themeApp = createTheme({
                 },
             },
         },
+
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    textTransform: "none",
+                    border: "0px",
+                    "&:focus": {
+                        outline: "none",
+                    },
+                    "&:active": {
+                        boxShadow: "none",
+                    },
+                    "&:hover": {
+                        border: "0px"
+                    },
+                },
+            },
+        }
     },
 
     palette: {

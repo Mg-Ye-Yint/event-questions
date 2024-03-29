@@ -169,20 +169,24 @@ export default function HostButton(props: IData) {
                     sx={{
                         display: "flex",
                         justifyContent: "center",
+                        border: "0px"
                     }}>
                     <FormControl
                         sx={{
                             width: "95%",
                             padding: 1,
+                            border: "0px",
                         }}
-                        variant="outlined">
+                        variant="outlined"
+                    >
                         <OutlinedInput
+                            maxRows={3}
                             placeholder="Add your comment..."
                             multiline
                             sx={{
                                 background: "white",
                                 borderRadius: "14px",
-                                border: "1px solid #C9CCD0",
+                                border: "1px solid #2ECC71",
                                 "&:hover": {
                                     border: "1px solid #2ECC71",
                                 },
@@ -194,7 +198,7 @@ export default function HostButton(props: IData) {
                             value={props.comment}
                             onChange={props.handleSetComment}
                             endAdornment={
-                                <InputAdornment position="end">
+                                <InputAdornment sx={{ border: "0px" }} position="end">
                                     {props.comment ? (
                                         <IconButton
                                             edge="end"
@@ -202,7 +206,7 @@ export default function HostButton(props: IData) {
                                                 border: "0px",
                                             }}
                                             onClick={props.handleAddComment}>
-                                            <SendIcon />
+                                            <SendIcon sx={{ color: "#2ECC71" }} />
                                         </IconButton>
                                     ) : (
                                         <></>

@@ -191,6 +191,10 @@ export default function ALQuestionCard(props: IData) {
                                     width: "86px",
                                     textTransform: "none",
                                     borderRadius: "4px",
+                                    "&:hover": {
+                                        background: "#2ECC71",
+                                        color: "white",
+                                    },
                                 }}>
                                 Answered
                             </Button>
@@ -375,6 +379,7 @@ export default function ALQuestionCard(props: IData) {
                         .map((item, index) => (
                             <Box key={index} sx={{ marginBottom: "16px" }}>
                                 <Comment
+                                    comment={item}
                                     isHost={false}
                                     ownerName={item.name}
                                     date={item.timestamp.toLocaleString()}

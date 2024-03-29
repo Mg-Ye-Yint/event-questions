@@ -17,6 +17,7 @@ export interface IComment {
     name: string;
     context: string;
     timestamp: Date;
+    likeNumber: { userLikeId: string; }[];
 }
 
 export interface IAddComment {

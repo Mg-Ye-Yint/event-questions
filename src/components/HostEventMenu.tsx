@@ -124,7 +124,7 @@ export default function HostEventMenu(props: IData) {
                                 marginLeft: "16px",
                                 color: "white",
                             }}>
-                            <Box>Link: {patch}</Box>
+                            <Box><u>Admin URL</u></Box>
                             <IconButton
                                 onClick={() =>
                                     handleCopyText(

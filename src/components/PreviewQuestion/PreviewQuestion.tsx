@@ -61,7 +61,7 @@ export default function PreviewQuestion(props: IData) {
                 setQuestions(data);
                 if (userInfo !== null) {
                     const isUserLiked = data.likeNumber.some(
-                        (item: { userLikeId: string }) =>
+                        (item: { userLikeId: string; }) =>
                             item.userLikeId === userInfo.userId
                     );
                     const isOwner = data.ownerId == userInfo.userId;
@@ -460,6 +460,7 @@ export default function PreviewQuestion(props: IData) {
                                                         marginBottom: "16px",
                                                     }}>
                                                     <Comment
+                                                        comment={item}
                                                         isHost={props.isHost}
                                                         ownerName={item.name}
                                                         date={item.timestamp.toLocaleString()}

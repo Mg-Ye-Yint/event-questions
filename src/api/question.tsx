@@ -118,8 +118,7 @@ export const likeQuestion = async (questionId: string, userId: string) => {
 export const unlikeQuestion = async (questionId: string, userId: string) => {
     try {
         return await axios.post(
-            `${
-                import.meta.env.VITE_EVENT
+            `${import.meta.env.VITE_EVENT
             }/unlikeQuestion/${questionId}/${userId}`
         );
     } catch (error) {
@@ -158,8 +157,7 @@ export const updateQuestion = async (
 export const deleteComment = async (commentId: string, questionId: string) => {
     try {
         return await axios.delete(
-            `${
-                import.meta.env.VITE_EVENT
+            `${import.meta.env.VITE_EVENT
             }/deleteComment/${commentId}/${questionId}`
         );
     } catch (error) {
@@ -168,35 +166,24 @@ export const deleteComment = async (commentId: string, questionId: string) => {
     }
 };
 
-// export const getQuestionSocket = async () => {
-//     try {
-//         // Establish a connection with the Socket.io server
-//         const socket = io(`${import.meta.env.VITE_EVENT}/questions`);
-
-//         // Emit a "getQuestion" event to request questions from the server
-//         socket.emit("getQuestion");
-
-//         // Define a promise that resolves when the response is received
-//         return new Promise((resolve, reject) => {
-//             // Listen for the response event from the server
-//             socket.on("questionResponse", (questions: IQuestion) => {
-//                 // Resolve the promise with the received questions
-//                 resolve(questions);
-
-//                 // Disconnect the socket connection
-//                 socket.disconnect();
-//             });
-
-//             // Handle errors
-//             socket.on("error", (error) => {
-//                 reject(error);
-
-//                 // Disconnect the socket connection
-//                 socket.disconnect();
-//             });
-//         });
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// };
+export const likeComment = async (questionId: string, userId: string, commentId: string) => {
+    try {
+        console.log(questionId);
+        return await axios.post(
+            `${import.meta.env.VITE_EVENT}/likecomment/${questionId}/${userId}/${commentId}`
+        );
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+export const unLikeComment = async (questionId: string, userId: string, commentId: string) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_EVENT}/unLikecomment/${questionId}/${userId}/${commentId}`
+        );
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};

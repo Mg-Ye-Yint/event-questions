@@ -12,6 +12,7 @@ import { themeApp } from "../utils/Theme";
 import PreviewQuestion from "../components/PreviewQuestion/PreviewQuestion";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { IQuestion } from "../interface/IQuestion";
+import PopupAlert from "../components/PopupAlert";
 
 interface IData {
     refresh: number;
@@ -53,7 +54,7 @@ export default function HostEvent(props: IData) {
 
     const handleCopyText = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Text copied to clipboard!");
+        PopupAlert("Copied", "success");
     };
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

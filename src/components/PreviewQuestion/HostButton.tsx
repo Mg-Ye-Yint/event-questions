@@ -7,7 +7,6 @@ import {
     OutlinedInput,
     Typography,
 } from "@mui/material";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import { ChangeEvent, useState } from "react";
@@ -33,9 +32,9 @@ interface IData {
 }
 
 export default function HostButton(props: IData) {
-    const [hovered, setHovered] = useState(false);
-    const [hoveredDelete, setHoveredDelete] = useState(false);
-    const [hoveredSave, setHoveredSave] = useState(false);
+    // const [hovered, setHovered] = useState(false);
+    // const [hoveredDelete, setHoveredDelete] = useState(false);
+    // const [hoveredSave, setHoveredSave] = useState(false);
     const [openComment, setOpenComment] = useState(false);
 
     const handleOpenComment = () => {
@@ -50,117 +49,120 @@ export default function HostButton(props: IData) {
                     gap: "8px",
                     marginLeft: "16px",
                     marginBottom: "14px",
-                    flexWrap: hoveredDelete ? "wrap" : "auto",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
                 }}>
-                <Button
-                    sx={{
-                        width: "75px",
-                        height: "38px",
-                        borderRadius: "50px",
-                        background: "#FFFFFF",
-                        border: "1px solid #C9CCD0",
-                        color: "black",
-                        textTransform: "none",
-                        gap: "3px",
-                    }}>
-                    <ThumbUpIcon
+                <Box sx={{ display: "flex", gap: "8px" }}>
+                    <Button
                         sx={{
-                            width: "20px",
-                            height: "20px",
-                        }}
-                    />
-                    <Typography fontSize={15}>
-                        {props.likeNumber == 0 ? "" : props.likeNumber}
-                    </Typography>
-                </Button>
-                <Button
-                    onClick={handleOpenComment}
-                    onMouseEnter={() => setHovered(true)}
-                    onMouseLeave={() => setHovered(false)}
-                    sx={{
-                        width: hovered || openComment ? "127px" : "52px",
-                        height: "36px",
-                        borderRadius: "50px",
-                        background: "#FFFFFF",
-                        border: "1px solid #C9CCD0",
-                        color: "black",
-                        textTransform: "none",
-                    }}>
-                    {hovered || openComment ? (
-                        <>
-                            <ChatBubbleOutlineOutlinedIcon
-                                sx={{ color: "#2ECC71" }}
-                            />
-                            <Typography color={"#2ECC71"} fontSize={15}>
-                                Comment
-                            </Typography>
-                        </>
-                    ) : (
-                        <>
-                            <ChatBubbleOutlineOutlinedIcon />
-                        </>
-                    )}
-                </Button>
-                <Button
-                    onClick={
-                        props.isSave
-                            ? props.handleUnSaveQuestion
-                            : props.handleSaveQuestion
-                    }
-                    onMouseEnter={() => setHoveredSave(true)}
-                    onMouseLeave={() => setHoveredSave(false)}
-                    sx={{
-                        width: hoveredSave || props.isSave ? "101px" : "52px",
-                        height: "36px",
-                        borderRadius: "50px",
-                        background: "#FFFFFF",
-                        border: "1px solid #C9CCD0",
-                        color: "black",
-                        textTransform: "none",
-                    }}>
-                    {hoveredSave || props.isSave ? (
-                        <>
-                            <BookmarkAddedOutlinedIcon
-                                sx={{ color: "#2ECC71" }}
-                            />
-                            <Typography color={"#2ECC71"} fontSize={15}>
-                                Saved
-                            </Typography>
-                        </>
-                    ) : (
-                        <>
-                            <BookmarkAddOutlinedIcon />
-                        </>
-                    )}
-                </Button>
-                <Button
-                    onMouseEnter={() => setHoveredDelete(true)}
-                    onMouseLeave={() => setHoveredDelete(false)}
+                            width: "75px",
+                            height: "38px",
+                            borderRadius: "50px",
+                            background: "#FFFFFF",
+                            border: "1px solid #C9CCD0",
+                            color: "black",
+                            textTransform: "none",
+                            gap: "3px",
+                            "&:hover": {
+                                background: "#FFFFFF",
+                            },
+                        }}>
+                        <ThumbUpIcon
+                            sx={{
+                                width: "20px",
+                                height: "20px",
+                            }}
+                        />
+                        <Typography fontSize={15}>
+                            {props.likeNumber == 0 ? "" : props.likeNumber}
+                        </Typography>
+                    </Button>
+                    <Button
+                        onClick={handleOpenComment}
+                        sx={{
+                            width: "127px",
+                            height: "36px",
+                            borderRadius: "50px",
+                            background: "#FFFFFF",
+                            border: "1px solid #C9CCD0",
+                            color: "black",
+                            textTransform: "none",
+                            "&:hover": {
+                                background: "#FFFFFF",
+                                color: "#2ECC71",
+                            },
+                        }}>
+                        {openComment ? (
+                            <>
+                                <ChatBubbleOutlineOutlinedIcon
+                                    sx={{ color: "#2ECC71" }}
+                                />
+                                <Typography color={"#2ECC71"} fontSize={15}>
+                                    Comment
+                                </Typography>
+                            </>
+                        ) : (
+                            <>
+                                <ChatBubbleOutlineOutlinedIcon />
+                                <Typography fontSize={15}>Comment</Typography>
+                            </>
+                        )}
+                    </Button>
+                    <Button
+                        onClick={
+                            props.isSave
+                                ? props.handleUnSaveQuestion
+                                : props.handleSaveQuestion
+                        }
+                        sx={{
+                            width: "101px",
+                            height: "36px",
+                            borderRadius: "50px",
+                            background: "#FFFFFF",
+                            border: "1px solid #C9CCD0",
+                            color: "black",
+                            textTransform: "none",
+                            "&:hover": {
+                                background: "#FFFFFF",
+                                color: "#2ECC71",
+                            },
+                        }}>
+                        {props.isSave ? (
+                            <>
+                                <BookmarkAddedOutlinedIcon
+                                    sx={{ color: "#2ECC71" }}
+                                />
+                                <Typography color={"#2ECC71"} fontSize={15}>
+                                    Saved
+                                </Typography>
+                            </>
+                        ) : (
+                            <>
+                                <BookmarkAddOutlinedIcon />
+                                <Typography fontSize={15}>Saved</Typography>
+                            </>
+                        )}
+                    </Button>
+                </Box>
+                {/* <Button
                     onClick={props.handleCloseCard}
                     sx={{
-                        width: hoveredDelete ? "103px" : "52px",
+                        width: "114px",
                         height: "36px",
                         borderRadius: "50px",
                         background: "#FFFFFF",
                         border: "1px solid #C9CCD0",
                         color: "black",
                         textTransform: "none",
+                        marginRight: "14px",
+                        "&:hover": {
+                            background: "#FFFFFF",
+                            color: "#FA6056",
+                        },
                     }}>
-                    {hoveredDelete ? (
-                        <>
-                            <DeleteOutlineOutlinedIcon
-                                sx={{ color: "#FA6056" }}
-                            />
-                            <Typography color={"#FA6056"} fontSize={15}>
-                                Delete
-                            </Typography>
-                        </>
-                    ) : (
-                        <>
-                            <DeleteOutlineOutlinedIcon />
-                        </>
-                    )}
-                </Button>
+                    <DeleteOutlineOutlinedIcon />
+                    <Typography fontSize={15}>Delete</Typography>
+                </Button> */}
             </Box>
             {openComment && (
                 <Box

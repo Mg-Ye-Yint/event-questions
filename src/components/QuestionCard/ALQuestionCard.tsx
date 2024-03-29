@@ -94,7 +94,10 @@ export default function ALQuestionCard(props: IData) {
     return (
         <Box
             sx={{
-                background: "white",
+                backgroundColor:
+                    userInfo.userId == props.questions.ownerId
+                        ? "rgba(46, 204, 113, 0.1)"
+                        : "white",
                 display: "flex",
                 flexDirection: "column",
                 width: "100%",
@@ -202,15 +205,16 @@ export default function ALQuestionCard(props: IData) {
                         </>
                     )}
                 </Box>
-                <IconButton
-                    disabled={userInfo.userId !== props.questions.ownerId}
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                    sx={{ marginRight: "16px" }}>
-                    <MoreHorizOutlinedIcon />
-                </IconButton>
+                {userInfo.userId == props.questions.ownerId && (
+                    <IconButton
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
+                        sx={{ marginRight: "16px" }}>
+                        <MoreHorizOutlinedIcon />
+                    </IconButton>
+                )}
                 <Menu
                     onClose={handleClose}
                     anchorEl={anchorEl}

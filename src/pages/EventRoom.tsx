@@ -69,7 +69,7 @@ export default function EventRoom(props: IData) {
             )) as IQuestion[];
             setMyQuestions(data);
         };
-        if (userInfo !== undefined) {
+        if (userInfo !== null) {
             fetch();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -8,6 +8,7 @@ import { themeApp } from "../utils/Theme";
 import { useNavigate } from "react-router-dom";
 import ConfirmModalCard from "./ConfirmModalCard";
 import { deleteEventById } from "../api/event";
+import PopupAlert from "./PopupAlert";
 
 interface IData {
     handleClose: () => void;
@@ -25,7 +26,7 @@ export default function HostEventMenu(props: IData) {
 
     const handleCopyText = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Text copied to clipboard!");
+        PopupAlert("Copied", "success");
     };
 
     const handleCloseCard = () => {

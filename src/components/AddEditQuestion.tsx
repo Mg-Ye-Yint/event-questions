@@ -26,16 +26,20 @@ interface IData {
 }
 
 export default function AddQuestion(props: IData) {
+    const now = new Date();
     const userInfo = JSON.parse(localStorage.getItem("user") || "null");
     const { eventId } = useParams();
     const [text, setText] = useState("");
     const [openConfirm, setOpenConfirm] = useState(false);
+    const [isClick, setIsClick] = useState(false);
 
     useEffect(() => {
         setText(props.context);
     }, [props.context]);
 
-    const now = new Date();
+    const handleClick = () => {
+        setIsClick(true);
+    };
 
     const handleAddQuestion = async () => {
         try {
@@ -77,6 +81,11 @@ export default function AddQuestion(props: IData) {
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
+    };
+
+    const handleCloseConfirm = () => {
+        setOpenConfirm(!openConfirm);
+        setIsClick(!isClick);
     };
 
     return (
@@ -163,11 +172,8 @@ export default function AddQuestion(props: IData) {
                                     )}
                                     <IconButton
                                         onClick={
-                                            text != ""
-                                                ? () =>
-                                                      setOpenConfirm(
-                                                          !openConfirm
-                                                      )
+                                            text != "" && isClick
+                                                ? handleCloseConfirm
                                                 : props.handleClose
                                         }
                                         size="small">
@@ -192,11 +198,12 @@ export default function AddQuestion(props: IData) {
                                     alignItems: "center",
                                 }}>
                                 <Box
+                                    onClick={handleClick}
                                     sx={{
                                         display: "flex",
                                         background: "white",
                                         borderRadius: "8px",
-                                        width: "100%",
+                                        width: "90%",
                                         marginRight: "14px",
                                         marginLeft: "14px",
                                         border: "1px solid #2ECC71",

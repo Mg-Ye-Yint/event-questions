@@ -1,19 +1,26 @@
-import { Box, Divider, IconButton, Modal, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Divider,
+    IconButton,
+    Modal,
+    Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getEventById } from "../api/event";
 import PreviewQuestion from "../components/PreviewQuestion/PreviewQuestion";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import LinkOutlinedIcon from "@mui/icons-material/LinkOutlined";
 import { themeApp } from "../utils/Theme";
 import { Ievent } from "../interface/Ievent";
 import MenuIcon from "@mui/icons-material/Menu";
 import AudienceMenu from "../components/AudienceMenu";
-import AddIcon from "@mui/icons-material/Add";
 import AddQuestion from "../components/AddEditQuestion";
 import ALQuestionCard from "../components/QuestionCard/ALQuestionCard";
 import AlerQuestion from "../components/AlerQuestion";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { IQuestion } from "../interface/IQuestion";
+import PopupAlert from "../components/PopupAlert";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
 interface IData {
     refresh: number;
@@ -68,7 +75,7 @@ export default function EventDetails(props: IData) {
     };
     const handleCopyText = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Text copied to clipboard!");
+        PopupAlert("Copied", "success");
     };
 
     return (
@@ -221,15 +228,7 @@ export default function EventDetails(props: IData) {
                                             alignItems: "center",
                                             cursor: "pointer",
                                         }}>
-                                        <FiberManualRecordIcon
-                                            sx={{
-                                                color: "red",
-                                                width: "8px",
-                                                height: "8px",
-                                                marginRight: "8px",
-                                            }}
-                                        />
-                                        Live
+                                        Recent
                                         <Box
                                             sx={{
                                                 display: "flex",
@@ -361,20 +360,50 @@ export default function EventDetails(props: IData) {
                                             <Box sx={{ marginBottom: "10px" }}>
                                                 <Typography
                                                     sx={{
-                                                        marginTop: "50%",
+                                                        marginTop: "40%",
                                                         fontSize: "20px",
+                                                        fontFamily: "Inter",
                                                         fontWeight: "bold",
                                                     }}>
-                                                    Share link to invite
+                                                    Join the show!
                                                 </Typography>
                                             </Box>
                                             <Box sx={{ marginBottom: "10px" }}>
-                                                <Typography>
-                                                    Copies link or code for join
-                                                    real quick
+                                                <Typography
+                                                    fontFamily={"Inter"}
+                                                    fontSize={17}>
+                                                    Share this URL with your
+                                                    friends <br /> so that they
+                                                    can join immediately.
                                                 </Typography>
                                             </Box>
-                                            <Box
+                                            <Button
+                                                onClick={() =>
+                                                    handleCopyText(
+                                                        import.meta.env
+                                                            .VITE_CLIENT +
+                                                            "/eventRoom/" +
+                                                            (eventId ?? "") +
+                                                            "/no"
+                                                    )
+                                                }
+                                                sx={{
+                                                    width: "90%",
+                                                    height: "56px",
+                                                    color: "#2ECC71",
+                                                    borderRadius: "14px",
+                                                    backgroundColor:
+                                                        "rgba(46, 204, 113, 0.2)",
+                                                    "&:hover": {
+                                                        backgroundColor:
+                                                            "rgba(46, 204, 113, 0.2)",
+                                                        color: "#2ECC71",
+                                                    },
+                                                }}
+                                                endIcon={<LinkOutlinedIcon />}>
+                                                Copy Invite URL
+                                            </Button>
+                                            {/* <Box
                                                 sx={{
                                                     display: "flex",
                                                     justifyContent: "center",
@@ -391,7 +420,7 @@ export default function EventDetails(props: IData) {
                                                     }>
                                                     <ContentCopyOutlinedIcon />
                                                 </IconButton>
-                                            </Box>
+                                            </Box> */}
                                         </Box>
                                     )}
                                 </>
@@ -529,29 +558,45 @@ export default function EventDetails(props: IData) {
                                     marginTop: "10px",
                                 },
                             }}>
-                            <IconButton
-                                onClick={handleOpenQueCard}
+                            <Box
                                 sx={{
-                                    width: "60px",
-                                    height: "60px",
+                                    width: "172px",
+                                    height: "56px",
+                                    color: "white",
+                                    borderRadius: "14px",
                                     background: "#2AC75F",
                                     marginRight: "10px",
+                                    fontSize: "17px",
+                                    fontWeight: "medium",
+                                    display: "flex",
                                     [themeApp.breakpoints.up("md")]: {
                                         marginRight: "0px",
                                     },
                                     "&:hover": {
                                         background: "#2AC75F",
-                                        color: "black",
+                                        color: "white",
                                     },
                                 }}>
-                                <AddIcon
+                                <Box
+                                    onClick={handleOpenQueCard}
                                     sx={{
-                                        color: "black",
-                                        width: "24px",
-                                        height: "24px",
-                                    }}
-                                />
-                            </IconButton>
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        width: "100%",
+                                        gap: "8px",
+                                        alignContent: "center",
+                                        alignItems: "center",
+                                    }}>
+                                    <ChatBubbleOutlineOutlinedIcon
+                                        sx={{
+                                            color: "white",
+                                            width: "24px",
+                                            height: "24px",
+                                        }}
+                                    />
+                                    Ask question
+                                </Box>
+                            </Box>
                         </Box>
                     </Box>
                 </Box>

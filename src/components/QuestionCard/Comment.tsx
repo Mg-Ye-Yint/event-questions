@@ -1,8 +1,8 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Box, Typography } from "@mui/material";
 import { deleteComment } from "../../api/question";
 import ConfirmModalCard from "../ConfirmModalCard";
 import { useState } from "react";
+import { getTimeDifferenceInMinutes } from "../../helper/getTime";
 
 interface IData {
     ownerName: string;
@@ -71,15 +71,43 @@ export default function Comment(props: IData) {
                                 marginLeft: "3px",
                                 fontSize: "15px",
                             }}>
-                            {props.date}
+                            {(() => {
+                                const timeDifferenceInMinutes =
+                                    getTimeDifferenceInMinutes(
+                                        new Date(props.date)
+                                    );
+                                if (Number(timeDifferenceInMinutes) > 60) {
+                                    return (
+                                        <>
+                                            {Math.floor(
+                                                Number(
+                                                    timeDifferenceInMinutes
+                                                ) / 60
+                                            )}{" "}
+                                            hr
+                                        </>
+                                    );
+                                } else {
+                                    return <>{timeDifferenceInMinutes} m</>;
+                                }
+                            })()}{" "}
                         </Box>
                     </Box>
                     {props.isHost && (
-                        <IconButton
+                        // <IconButton
+                        //     onClick={() => setOpenConfirm(!openConfirm)}
+                        //     size="small">
+                        //     <DeleteOutlineIcon sx={{ fontSize: "18px" }} />
+                        // </IconButton>
+                        <Box
                             onClick={() => setOpenConfirm(!openConfirm)}
-                            size="small">
-                            <DeleteOutlineIcon sx={{ fontSize: "18px" }} />
-                        </IconButton>
+                            sx={{
+                                color: "#1C1C1C",
+                                fontSize: "13px",
+                                cursor: "pointer",
+                            }}>
+                            Remove
+                        </Box>
                     )}
                 </Box>
                 <Box

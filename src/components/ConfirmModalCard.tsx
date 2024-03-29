@@ -1,11 +1,4 @@
-import {
-    Box,
-    Typography,
-    Divider,
-    Button,
-    Modal,
-    IconButton,
-} from "@mui/material";
+import { Box, Divider, Button, Modal, IconButton } from "@mui/material";
 import { themeApp } from "../utils/Theme";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -47,44 +40,46 @@ export default function ConfirmModalCard(props: IData) {
                     <Box
                         sx={{
                             display: "flex",
-                            flexDirection: "row",
+                            paddingLeft: "14px",
+                            paddingRight: "14px",
+                            paddingTop: "10px",
+                            marginBottom: "5px",
+                            fontSize: "13px",
                             justifyContent: "space-between",
                             alignItems: "center",
                             alignContent: "center",
-                            paddingTop: "10px",
-                            marginLeft: "14px",
-                            marginRight: "14px",
                         }}>
-                        <Typography
+                        <Box
                             sx={{
-                                marginTop: "14px",
-                                textAlign: "left",
-                                fontWeight: "medium",
-                                fontSize: "17px",
-                            }}>
-                            {/* {props.discard
-                                ? "Unsaved Change"
-                                : "Delete question?"} */}
-                            {props.title}
-                        </Typography>
-                        <IconButton
-                            onClick={props.handleClose}
-                            sx={{
-                                color: "black",
-                                bgcolor: "#F7F7F7",
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignContent: "center",
                                 alignItems: "center",
                             }}>
-                            <CloseIcon />
-                        </IconButton>
+                            <Box
+                                sx={{
+                                    fontSize: "17px",
+                                    color: "black",
+                                    marginRight: "5px",
+                                    fontFamily: "Inter",
+                                    fontWeight: "medium",
+                                }}>
+                                {props.title}
+                            </Box>
+                            <IconButton
+                                size="small"
+                                onClick={props.handleClose}
+                                sx={{
+                                    color: "black",
+                                    bgcolor: "#F7F7F7",
+                                    alignItems: "center",
+                                }}>
+                                <CloseIcon />
+                            </IconButton>
+                        </Box>
                     </Box>
-
-                    <Divider
-                        sx={{
-                            width: "100%",
-                            marginTop: "14px",
-                            border: "0.5px solid #C9CCD0",
-                        }}
-                    />
+                    <Divider sx={{ border: "0.5px solid #C9CCD0" }} />
 
                     <Box
                         sx={{
@@ -149,9 +144,10 @@ export default function ConfirmModalCard(props: IData) {
 
                                     border: props.discard ? "none" : "none",
                                     "&:hover": {
-                                        background: "white",
-                                        color: "black",
-                                        border: "1px solid black",
+                                        background: props.discard
+                                            ? "#2ECC71"
+                                            : "#FA6056",
+                                        color: "white",
                                     },
                                     [themeApp.breakpoints.up("md")]: {
                                         width: "181px",

@@ -4,7 +4,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useState } from "react";
 import { ContentCopy } from "@mui/icons-material";
 import { themeApp } from "../utils/Theme";
-import LeaveCard from "./LeaveCard";
+import ConfirmModalCard from "./ConfirmModalCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteUserById } from "../api/audience";
+import PopupAlert from "./PopupAlert";
 
 interface IData {
     handleClose: () => void;
@@ -15,19 +18,38 @@ interface IData {
 }
 
 export default function AudienceMenu(props: IData) {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const userInfo = JSON.parse(localStorage.getItem("user") || "null");
+    const { eventId } = useParams();
 
     const handleCloseCard = () => {
         setOpen(!open);
     };
+
     const handleCopyText = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Text copied to clipboard!");
+        PopupAlert("Copied", "success");
+    };
+    const handleLeave = async () => {
+        if (userInfo) {
+            await deleteUserById(userInfo.userId);
+            localStorage.removeItem("user");
+            navigate("/");
+        }
     };
 
     return (
         <>
-            <LeaveCard handleCloseCard={handleCloseCard} open={open} />
+            <ConfirmModalCard
+                open={open}
+                discard={false}
+                buttonWord={"Leave"}
+                title={"Are you sure to leave?"}
+                context={"You can rejoin again by using the invitation code."}
+                handleClose={handleCloseCard}
+                handleDeleteDiscard={handleLeave}
+            />
             <Box
                 sx={{
                     background: "#2ECC71",
@@ -83,9 +105,15 @@ export default function AudienceMenu(props: IData) {
                         marginLeft: "16px",
                         color: "black",
                     }}>
-                    <Box>Code: {props.roomId}</Box>
+                    <Box>Invitation URL</Box>
                     <IconButton
-                        onClick={() => handleCopyText(props.roomId)}
+                        onClick={() =>
+                            handleCopyText(
+                                `${
+                                    import.meta.env.VITE_CLIENT
+                                }/eventRoom/${eventId}/no`
+                            )
+                        }
                         sx={{ marginRight: "16px", color: "black" }}>
                         <ContentCopy fontSize="small" />
                     </IconButton>

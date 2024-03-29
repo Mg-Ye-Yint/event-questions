@@ -59,13 +59,15 @@ export default function PreviewQuestion(props: IData) {
             const data: IQuestion = await getQuesById(props.questionId ?? "");
             if (data) {
                 setQuestions(data);
-                const isUserLiked = data.likeNumber.some(
-                    (item: { userLikeId: string }) =>
-                        item.userLikeId === userInfo.userId
-                );
-                const isOwner = data.ownerId == userInfo.userId;
-                SetIsOwner(isOwner);
-                SetIsUserLiked(isUserLiked);
+                if (userInfo !== null) {
+                    const isUserLiked = data.likeNumber.some(
+                        (item: { userLikeId: string }) =>
+                            item.userLikeId === userInfo.userId
+                    );
+                    const isOwner = data.ownerId == userInfo.userId;
+                    SetIsOwner(isOwner);
+                    SetIsUserLiked(isUserLiked);
+                }
             }
         };
         if (props.openPreviewCard) {
@@ -215,51 +217,106 @@ export default function PreviewQuestion(props: IData) {
                                     textAlign: "center",
                                     width: "100%",
                                 }}>
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        padding: "14px",
-                                        fontSize: "13px",
-                                        justifyContent: "space-between",
-                                        alignItems: "center",
-                                        alignContent: "center",
-                                    }}>
-                                    <Box sx={{ width: "50%", display: "flex" }}>
+                                {isOwner ? (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            padding: "14px",
+                                            fontSize: "13px",
+                                            justifyContent: "space-between",
+                                            alignItems: "center",
+                                            alignContent: "center",
+                                        }}>
                                         <Box
                                             sx={{
-                                                color: "black",
-                                                marginRight: "5px",
+                                                display: "flex",
+                                                alignContent: "center",
+                                                alignItems: "center",
+                                            }}>
+                                            <IconButton
+                                                sx={{
+                                                    fontSize: "13px",
+                                                    background: "#F7F7F7",
+                                                    width: "32px",
+                                                    height: "32px",
+                                                }}
+                                                onClick={props.handleCloseCard}>
+                                                <CloseIcon
+                                                    sx={{
+                                                        width: "20px",
+                                                        height: "20px",
+                                                        color: "black",
+                                                    }}
+                                                />
+                                            </IconButton>
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                color: "#1C1C1C",
                                                 fontFamily: "Inter",
                                                 fontSize: "17px",
                                             }}>
                                             Question
                                         </Box>
+                                        <Box
+                                            onClick={() =>
+                                                setOpenConfirm(!openConfirm)
+                                            }
+                                            sx={{
+                                                cursor: "pointer",
+                                                color: "#1C1C1C",
+                                                fontSize: "15px",
+                                                "&:hover": {
+                                                    color: "#FA6056",
+                                                },
+                                            }}>
+                                            Delete
+                                        </Box>
                                     </Box>
-
+                                ) : (
                                     <Box
                                         sx={{
                                             display: "flex",
-                                            alignContent: "center",
+                                            padding: "14px",
+                                            fontSize: "13px",
+                                            justifyContent: "space-between",
                                             alignItems: "center",
+                                            alignContent: "center",
                                         }}>
-                                        <IconButton
+                                        <Box />
+                                        <Box
                                             sx={{
-                                                fontSize: "13px",
-                                                background: "#F7F7F7",
-                                                width: "32px",
-                                                height: "32px",
-                                            }}
-                                            onClick={props.handleCloseCard}>
-                                            <CloseIcon
+                                                color: "#1C1C1C",
+                                                fontFamily: "Inter",
+                                                fontSize: "17px",
+                                            }}>
+                                            Question
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                alignContent: "center",
+                                                alignItems: "center",
+                                            }}>
+                                            <IconButton
                                                 sx={{
-                                                    width: "20px",
-                                                    height: "20px",
-                                                    color: "black",
+                                                    fontSize: "13px",
+                                                    background: "#F7F7F7",
+                                                    width: "32px",
+                                                    height: "32px",
                                                 }}
-                                            />
-                                        </IconButton>
+                                                onClick={props.handleCloseCard}>
+                                                <CloseIcon
+                                                    sx={{
+                                                        width: "20px",
+                                                        height: "20px",
+                                                        color: "black",
+                                                    }}
+                                                />
+                                            </IconButton>
+                                        </Box>
                                     </Box>
-                                </Box>
+                                )}
                                 <Divider sx={{ marginBottom: "10px" }} />
                                 <Box
                                     sx={{

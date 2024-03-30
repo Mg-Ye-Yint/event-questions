@@ -382,9 +382,9 @@ export default function EventDetails(props: IData) {
                                                     handleCopyText(
                                                         import.meta.env
                                                             .VITE_CLIENT +
-                                                            "/eventRoom/" +
-                                                            (eventId ?? "") +
-                                                            "/no"
+                                                        "/eventRoom/" +
+                                                        (eventId ?? "") +
+                                                        "/no"
                                                     )
                                                 }
                                                 sx={{
@@ -560,6 +560,7 @@ export default function EventDetails(props: IData) {
                             }}>
                             <Box
                                 sx={{
+                                    cursor: "pointer",
                                     width: "172px",
                                     height: "56px",
                                     color: "white",

@@ -117,7 +117,7 @@ export default function Event() {
                     <Avatar
                         {...stringAvatar(`${eventData?.ownerName}`)}
                         sx={{
-                            background: "black",
+                            background: "#2ECC71",
                             fontSize: "36px",
                             width: "100px",
                             height: "100px",

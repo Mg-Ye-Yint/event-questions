@@ -7,7 +7,7 @@ import {
     Typography,
 } from "@mui/material";
 import { IQuestion } from "../../interface/IQuestion";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
     addComment,
     deleteQuestionById,
@@ -97,7 +97,7 @@ export default function PreviewQuestion(props: IData) {
         setOpen(!open);
     };
 
-    const handleSetComment = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSetComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setComment(event.target.value);
     };
 

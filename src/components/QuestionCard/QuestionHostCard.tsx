@@ -264,6 +264,7 @@ export default function QuestionCard(props: IData) {
                             cursor: "pointer",
                             textAlign: "justify",
                             fontSize: "17px",
+                            marginTop: "-5px",
                         }}
                         fontWeight={"mediums"}>
                         {props.questions.questionText}
@@ -289,25 +290,29 @@ export default function QuestionCard(props: IData) {
                                     borderRadius: "8px",
                                 }}>
                                 <ThumbUpIcon
-                                    sx={{ width: "20px", height: "20px" }}
+                                    sx={{
+                                        width: "16px",
+                                        height: "16px",
+                                    }}
                                 />
                             </Box>
                         </>
                     ) : (
                         <Box
                             sx={{
+                                height: "24px",
                                 color: "#1C1C1C",
                                 borderRadius: "8px",
                                 display: "flex",
-                                fontSize: "15px",
+                                fontSize: "13px",
                                 alignContent: "center",
                                 alignItems: "center",
-                                gap: "4px",
+                                gap: "3px",
                             }}>
                             <ThumbUpIcon
                                 sx={{
-                                    width: "20px",
-                                    height: "20px",
+                                    width: "16px",
+                                    height: "16px",
                                 }}
                             />
                             {props.questions.likeNumber.length}
@@ -321,12 +326,12 @@ export default function QuestionCard(props: IData) {
                                 color: "#1C1C1C",
                                 fontWeight: "regular",
                                 fontFamily: "Inter",
-                                fontSize: "15px",
+                                fontSize: "13px"
                             }}>
                             <BookmarkAddedIcon
                                 sx={{
-                                    width: "20px",
-                                    height: "20px",
+                                    width: "16px",
+                                    height: "16px",
                                     color: "#1C1C1C",
                                 }}
                             />
@@ -340,14 +345,14 @@ export default function QuestionCard(props: IData) {
                                 alignContent: "center",
                                 alignItems: "center",
                                 color: "#1C1C1C",
-                                fontSize: "15px",
+                                fontSize: "13px",
                                 gap: "4px",
                             }}>
                             <CheckOutlinedIcon
                                 sx={{
                                     color: "#1C1C1C",
-                                    width: "20px",
-                                    height: "20px",
+                                    width: "16px",
+                                    height: "16px",
                                 }}
                             />
                             Read

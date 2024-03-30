@@ -1,10 +1,6 @@
 import {
     Box,
     Button,
-    FormControl,
-    IconButton,
-    InputAdornment,
-    OutlinedInput,
     Typography,
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -25,7 +21,7 @@ interface IData {
     handleLike: () => void;
     handleCloseCard: () => void;
     handleOpenQueCard: (context: string) => void;
-    handleSetComment: (event: ChangeEvent<HTMLInputElement>) => void;
+    handleSetComment: (event: ChangeEvent<HTMLTextAreaElement>) => void;
     handleAddComment: () => void;
     handleSaveQuestion: () => void;
     handleUnSaveQuestion: () => void;
@@ -171,7 +167,7 @@ export default function HostButton(props: IData) {
                         justifyContent: "center",
                         border: "0px"
                     }}>
-                    <FormControl
+                    {/* <FormControl
                         sx={{
                             width: "95%",
                             padding: 1,
@@ -214,7 +210,73 @@ export default function HostButton(props: IData) {
                                 </InputAdornment>
                             }
                         />
-                    </FormControl>
+                    </FormControl> */}
+                    <Box
+                        sx={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                background: "white",
+                                borderRadius: "8px",
+                                width: "90%",
+                                marginRight: "14px",
+                                marginLeft: "14px",
+                                border: "2px solid #2ECC71",
+                                alignContent: "center",
+                                alignItems: "center",
+                                marginBottom: "16px"
+                            }}>
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    borderRadius: "14px",
+                                    marginTop: "10px",
+                                }}>
+                                <textarea
+                                    value={props.comment}
+                                    onChange={props.handleSetComment}
+                                    style={{
+                                        borderRadius: "14px",
+                                        fontSize: "17px",
+                                        width: "95%",
+                                        border: "none",
+                                        outline: "none",
+                                        color: "black",
+                                        resize: "none",
+                                        fontFamily: "Inter",
+                                        height: "30px",
+                                        maxHeight: "100px"
+                                    }}
+                                    maxLength={200}
+                                    placeholder="What is in your mind?"
+                                />
+                            </Box>
+                            {props.comment ? (
+                                <Box
+                                    sx={{
+                                        cursor: "pointer",
+                                        border: "0px",
+                                        marginRight: "5px"
+                                    }}
+                                    onClick={props.handleAddComment}>
+                                    <SendIcon sx={{ color: "#2ECC71" }} />
+                                </Box>
+                            ) : (
+                                <></>
+                            )}
+                        </Box>
+                    </Box>
+                    {/* <textarea
+                        placeholder="Add your comment..."
+                        maxLength={100} style={{
+                            resize: 'none', width: "95%",
+                            padding: 1, fontFamily: "Inter"
+                        }} /> */}
                 </Box>
             )}
         </Box>

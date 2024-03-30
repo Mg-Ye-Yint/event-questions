@@ -360,7 +360,7 @@ export default function ALQuestionCard(props: IData) {
             </Box>
             <Box
                 sx={{
-                    padding: "10px 14px 0px 16px",
+                    padding: "10px 14px 0px 14px",
                 }}>
                 {props.questions.comment.length != 0 &&
                     props.questions.comment

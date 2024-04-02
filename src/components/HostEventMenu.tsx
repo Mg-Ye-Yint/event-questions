@@ -124,7 +124,34 @@ export default function HostEventMenu(props: IData) {
                                 marginLeft: "16px",
                                 color: "white",
                             }}>
-                            <Box><u>Admin URL</u></Box>
+                            <Box>
+                                <u>Invite URL</u>
+                            </Box>
+                            <IconButton
+                                onClick={() =>
+                                    handleCopyText(
+                                        import.meta.env.VITE_CLIENT +
+                                            "/event/" +
+                                            props.eventId
+                                    )
+                                }
+                                sx={{ marginRight: "16px", color: "white" }}>
+                                <ContentCopy fontSize="small" />
+                            </IconButton>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignContent: "center",
+                                alignItems: "center",
+                                marginTop: "10px",
+                                marginLeft: "16px",
+                                color: "white",
+                            }}>
+                            <Box>
+                                <u>Admin URL</u>
+                            </Box>
                             <IconButton
                                 onClick={() =>
                                     handleCopyText(

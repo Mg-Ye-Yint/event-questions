@@ -382,9 +382,8 @@ export default function EventDetails(props: IData) {
                                                     handleCopyText(
                                                         import.meta.env
                                                             .VITE_CLIENT +
-                                                        "/eventRoom/" +
-                                                        (eventId ?? "") +
-                                                        "/no"
+                                                            "/event/" +
+                                                            eventData.temRoomId
                                                     )
                                                 }
                                                 sx={{

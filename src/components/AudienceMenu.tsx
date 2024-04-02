@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ContentCopy } from "@mui/icons-material";
 import { themeApp } from "../utils/Theme";
 import ConfirmModalCard from "./ConfirmModalCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteUserById } from "../api/audience";
 import PopupAlert from "./PopupAlert";
 
@@ -21,7 +21,6 @@ export default function AudienceMenu(props: IData) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const userInfo = JSON.parse(localStorage.getItem("user") || "null");
-    const { eventId } = useParams();
 
     const handleCloseCard = () => {
         setOpen(!open);
@@ -109,9 +108,9 @@ export default function AudienceMenu(props: IData) {
                     <IconButton
                         onClick={() =>
                             handleCopyText(
-                                `${
-                                    import.meta.env.VITE_CLIENT
-                                }/eventRoom/${eventId}/no`
+                                import.meta.env.VITE_CLIENT +
+                                    "/event/" +
+                                    props.roomId
                             )
                         }
                         sx={{ marginRight: "16px", color: "black" }}>

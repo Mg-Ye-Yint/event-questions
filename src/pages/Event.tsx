@@ -121,7 +121,7 @@ export default function Event() {
                             fontSize: "36px",
                             width: "100px",
                             height: "100px",
-                            color: "#2ECC71",
+                            color: "white",
                         }}
                     />
                 </Box>

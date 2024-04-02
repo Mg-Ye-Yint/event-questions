@@ -310,8 +310,8 @@ export default function HostEvent(props: IData) {
                                                 a.isRead === b.isRead
                                                     ? 0
                                                     : a.isRead
-                                                        ? 1
-                                                        : -1
+                                                    ? 1
+                                                    : -1
                                             )
                                             .map((item, index) => (
                                                 <Box
@@ -380,13 +380,35 @@ export default function HostEvent(props: IData) {
                                                     alignContent: "center",
                                                     alignItems: "center",
                                                 }}>
-                                                Link: {patch}
+                                                Invite Link:{" "}
+                                                {"/event/" +
+                                                    eventData.temRoomId}
                                                 <IconButton
                                                     onClick={() =>
                                                         handleCopyText(
                                                             import.meta.env
                                                                 .VITE_CLIENT +
-                                                            patch
+                                                                "/event/" +
+                                                                eventData.temRoomId
+                                                        )
+                                                    }>
+                                                    <ContentCopyOutlinedIcon />
+                                                </IconButton>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignContent: "center",
+                                                    alignItems: "center",
+                                                }}>
+                                                Admin Link: {patch}
+                                                <IconButton
+                                                    onClick={() =>
+                                                        handleCopyText(
+                                                            import.meta.env
+                                                                .VITE_CLIENT +
+                                                                patch
                                                         )
                                                     }>
                                                     <ContentCopyOutlinedIcon />
@@ -412,8 +434,8 @@ export default function HostEvent(props: IData) {
                                                 a.isRead === b.isRead
                                                     ? 0
                                                     : a.isRead
-                                                        ? 1
-                                                        : -1
+                                                    ? 1
+                                                    : -1
                                             )
                                             .sort((a, b) => {
                                                 return (
